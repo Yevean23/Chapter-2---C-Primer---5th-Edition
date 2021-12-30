@@ -258,7 +258,6 @@ int main()
 	// int null = 0, *p = null; // the code is not legal because p points to integer value instead of an address.
 	
 
-
 	return 0;
 }
 
