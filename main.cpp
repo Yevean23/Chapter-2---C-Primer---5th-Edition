@@ -201,7 +201,7 @@ int main()
 	//int cnt = 0; // this is fine
 	//const int sz = cnt; // this is also fine
 	//++cnt; ++sz; // sz cannot be incremented.
-	
+
 	//int errNumb = 0;
 	//int* const curErr = &errNumb; // curErr will always point to errNumb
 	//double pi = 3.14159;
@@ -220,19 +220,44 @@ int main()
 	//const int i2 = i, &r = i; // legal
 
 	//* 2.28 *//
-	int i, *const cp; //cp must be initialized since it is const
-	int* p1, *const p2; //same thing with p2
-	const int ic, &r = ic; //ic must be initialized
-	const int* const p3; // must be initialized
-	const int* p; // fine
-	
+	//int i, *const cp; //cp must be initialized since it is const
+	//int* const p2; //same thing with p2
+	//const int ic, &r = ic; //ic must be initialized
+	//const int* const p3; // must be initialized
+	//const int* p; // fine
+
 	//* 2.29 *//
-	i = ic;
-	p1 = p3; // p3 not initialized
-	p1 = &ic; //p1 is not a const pointer
-	p3 = &ic; //this would be fine as an initializer
-	p2 = p1; // this would be fine as an initializer
-	ic = *p3; // pointer cannot point to memory value, must point to address
+	//i = ic; // ic is undefined, but fine if defined.
+	//p1 = p3; // type mismatch. pointer type must match base type, but inner const not required.
+	//p1 = &ic; //p1 is not a const pointer
+	//p3 = &ic; // p3 must first be initialized. but would still be illegal since p3 cannot be assigned, only initialized. this would be fine as part of p3's initialization, 
+	//p2 = p1; // same issue as one above. this would be fine as p2's initialization
+	//ic = *p3; // ic is a const therefore it cannot be assigned to.
+	
+	//* 2.30 *//
+	/*
+	For each of the following declarations indicate whether the
+	object being declared has top-level or low-level const.
+	
+	const int v2 = 0; int v1 = v2; // v2 is Top Level const, v1 is not a const
+	int *p1 = &v1, &r1 = v1; // neither p1 nor r1 has any const-ness
+	const int *p2 = &v2, *const p3 = &i, &r2 = v2; // p2 is a low level const. p3 is both. r2 is a low level const reference
+	*/
+
+	//* 2.31 *// 
+	/*
+	Given the declarations in the previous exercise,
+	determine whether the following assignments are legal.
+	Explain how the top - level or low - level const applies in each case.
+	r1 = v2; // legal: v2 is top level const and r1 is not, but its fine because top level const gets ignored when copying object
+	p1 = p2; p2 = p1; // 1st is illegal because p2 is a low level const and p1 is not, and low level const is not ignored when copying. second is legal because p1 gets implicitly converted to a low level const
+	p1 = p3; p2 = p3; // 1st is illegal because p3 is a low level const and p1 is not, and low level const is not ignored when copying. second statement is legal because low level const matches, and top level const is ignored.
+	*/
+
+	//* 2.32 *//
+	// int null = 0, *p = null; // the code is not legal because p points to integer value instead of an address.
+	
+
 
 	return 0;
 }
