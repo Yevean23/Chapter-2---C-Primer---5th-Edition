@@ -258,6 +258,30 @@ int main()
 	// int null = 0, *p = null; // the code is not legal because p points to integer value instead of an address.
 	
 
+	//* 2.33 *//
+	// int i = 0, &r = i;
+	// auto a = r;
+	// a=42; the value of the integer a is set to 42. i remains 0
+	
+	// const int ci = i, &cr = ci;
+	// auto b = ci;
+	// b = 42; // the value of the int b is set to 42. high level const is ignored during initialization
+	
+	// auto c = cr;
+	// c = 42; // the value of the integer c is set to 42.
+	
+	// auto d = &i;
+	// d= 42; illegal, d is a pointer to int and thus must be dereferences before assignment
+	
+	// auto e = &ci;
+	// e = 42; e is a pointer to const int and must be dereferenced before assignment
+
+	// auto &g = ci;
+	// g = 42; // g is a const int and thus cannot be assigned to.
+	
+
+	//* 2.34 *//
+	//
 	return 0;
 }
 
