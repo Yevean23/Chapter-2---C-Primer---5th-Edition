@@ -258,6 +258,15 @@ int main()
 	// int null = 0, *p = null; // the code is not legal because p points to integer value instead of an address.
 	
 
+	//* 2.33 *//
+	// int i = 0, &r = i;
+	// auto a = r;
+	// a=42; the value of the integer a is set to 42. i remains 0
+
+	// b = 24;
+
+	
+
 	return 0;
 }
 
