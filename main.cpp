@@ -355,18 +355,21 @@ int main()
 	1. decltype will keep the high level const during assignment whereas auto will not.
 	2. decltype can modify the type of its assignment by wrapping the expression in parenthesis
 	
-	Below is an example where auto and decltype will declare a variable differently based on the expression:
+	Below is an example where auto and decltype will declare a variable's type differently based on the expression:
 	auto var = expression;
 	decltype(expression) var;
 	*/
 	/*
-	const int testing = 0;
+	const int a = 0;
+	int b = 0;
+
+	// perform the same:
+	auto test1 = b; // test1 has type int and a value of 0
+	decltype(b) test2; // test2 has type int, but is not initialized.
 	
-	auto test1 = testing; // test1 has type int and a value of 0
-	decltype(testing) test2; // error: test2 is an uninitialized const int
-	
-	auto test3 = (testing); // test3 has type int and a value of 0
-	decltype((testing)) test4; // error: uninitialized reference. test4 has type const int&.
+	// perform differently:
+	auto test3 = (a); // test3 has type int and a value of 0
+	decltype((a)) test4; // test4 has type const int&. error: uninitialized reference. 
 	*/
 	
 	return 0;
