@@ -281,7 +281,94 @@ int main()
 	
 
 	//* 2.34 *//
-	//
+	// int i = 0, &r = i;
+	// auto a = r;
+	// cout << a << endl;
+	// a=42; the value of the integer a is set to 42. i remains 0
+	// cout << a << endl;
+
+	// const int ci = i, &cr = ci;
+	// auto b = ci;
+	// cout << b << endl;
+	// b = 42; // the value of the int b is set to 42. high level const is ignored during initialization
+	// cout << b << endl;
+	
+	// auto c = cr;
+	// cout << c << endl;
+	// c = 42; // the value of the integer c is set to 42.
+	// cout << c << endl;
+
+	// auto d = &i;
+	// cout << d << endl;
+	// d= 42; illegal, d is a pointer to int and thus must be dereferences before assignment
+	// cout << d << endl;
+	
+	// auto e = &ci;
+	// cout << e << endl;
+	// e = 42; e is a pointer to const int and must be dereferenced before assignment
+	// cout << e << endl;
+	
+	
+	// auto &g = ci;
+	// cout << g << endl;
+	// g = 42; // g is a const int and thus cannot be assigned to.
+	// cout << g << endl;
+	
+	//* 2.35 *//
+	const int i = 42;
+	auto j = i; const auto &k = i; auto *p = &i;
+	const auto j2 = i, &k2 = i;
+
+	// i is a const int with a value of 42
+	// j ist an int with the value of 42
+	// k references to const int
+	// p is a pointer to const int 
+	// j2 is a const int with the value of 42
+	// k2 references to const int
+
+	//* 2.36 *//
+	/*
+	int a = 3, b = 4; // a is an int with a value of 3, b is an int with value of 4
+	decltype(a) c = a; // c is an int with the value of 3
+	decltype((b)) d = a; // d is a reference to int bound to a
+	++c;
+	++d;
+	// a=4,d=4,b=4,c=4.
+	cout << a << " " << b << " " << c << " " << d << " " << endl;
+	*/
+
+	//* 2.37 *//
+	int a = 3, b = 4; // a has type in and value of 3, b has type int and value of 4
+	decltype(a) c = a; // c has type int and value of 3
+	decltype(a++) d = a; // d has type int and value of 3
+
+	cout << a << " " << b << " " << c << " " << d << " " << endl;
+
+	//* 2.38 *//
+	/*
+		Describe the differences in type deduction between
+	decltype and auto. Give an example of an expression where auto and
+	decltype will deduce the same type and an example where they will deduce
+	differing types.
+	*/
+	/*
+	1. decltype will keep the high level const during assignment whereas auto will not.
+	2. decltype can modify the type of its assignment by wrapping the expression in parenthesis
+	
+	Below is an example where auto and decltype will declare a variable differently based on the expression:
+	auto var = expression;
+	decltype(expression) var;
+	*/
+	/*
+	const int testing = 0;
+	
+	auto test1 = testing; // test1 has type int and a value of 0
+	decltype(testing) test2; // error: test2 is an uninitialized const int
+	
+	auto test3 = (testing); // test3 has type int and a value of 0
+	decltype((testing)) test4; // error: uninitialized reference. test4 has type const int&.
+	*/
+	
 	return 0;
 }
 
